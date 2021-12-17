@@ -6,7 +6,7 @@ const Favorites = lazy(() => import('../pages/favorites'));
 
 const AppRoutes: React.FC = () => {
   return (
-    <Suspense fallback={<div>loading</div>}>
+    <Suspense fallback={<div />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
