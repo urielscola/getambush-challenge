@@ -32,6 +32,7 @@ export const Container = styled.div`
 export const Author = styled.picture`
   img {
     width: 75px;
+    height: 75px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.white};
   }

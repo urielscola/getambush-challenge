@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, FormEvent } from 'react';
 import {
   Head,
   Header,
+  Footer,
   FlexDiv,
   Input,
   Icon,
@@ -32,7 +33,6 @@ const Home: React.FC = () => {
     try {
       setLoading(true);
       const response = await searchIssues({ ...params });
-      console.log(response);
       setIssues(response);
     } catch (err) {
       console.log(err);
@@ -64,22 +64,29 @@ const Home: React.FC = () => {
   };
 
   const handleLoadMore = async () => {
-    const response = await searchIssues({
-      search,
-      page: page + 1,
-      state,
-      order,
-    });
-    setIssues({
-      total_count: response.total_count,
-      items: [...(issues as SearchIssuesResponse).items, ...response.items],
-    });
-    setPage((p) => p + 1);
+    try {
+      setLoading(true);
+      const response = await searchIssues({
+        search,
+        page: page + 1,
+        state,
+        order,
+      });
+      setIssues({
+        total_count: response.total_count,
+        items: [...(issues as SearchIssuesResponse).items, ...response.items],
+      });
+      setPage((p) => p + 1);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    handleSearch({ search, page, state, order });
-  }, []);
+    if (!issues) handleSearch({ search, page, state, order });
+  }, [issues, search, page, state, order, handleSearch]);
 
   return (
     <>
@@ -87,13 +94,24 @@ const Home: React.FC = () => {
       <Header>
         <FlexDiv marginTop="30px">
           <form onSubmit={onSubmit}>
-            <Input
-              type="text"
-              placeholder="Search issues"
-              name="search"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-            />
+            <FlexDiv alignItems="center">
+              <Input
+                type="text"
+                placeholder="Search issues"
+                name="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+              <Button
+                margin="0 10px"
+                type="submit"
+                text="Search"
+                width="130px"
+                backgroundColor={theme.colors.blue}
+                size="x-small"
+                icon={<Icon variant={'search'} size={20} />}
+              />
+            </FlexDiv>
           </form>
         </FlexDiv>
       </Header>
@@ -125,7 +143,7 @@ const Home: React.FC = () => {
           </FlexDiv>
 
           {!loading && issues && issues.items.length === 0 && (
-            <FlexDiv flexWrap="wrap" margin="40px 0">
+            <FlexDiv flexWrap="wrap" margin="40px 0" minHeight="50vh">
               <Typography size="medium">No results</Typography>
             </FlexDiv>
           )}
@@ -139,7 +157,12 @@ const Home: React.FC = () => {
           )}
 
           {loading && (
-            <FlexDiv margin="30px" alignItems="center" justifyContent="center">
+            <FlexDiv
+              margin="30px"
+              alignItems="center"
+              justifyContent="center"
+              minHeight="50vh"
+            >
               <Loader size="x-large" />
             </FlexDiv>
           )}
@@ -155,6 +178,7 @@ const Home: React.FC = () => {
           )}
         </Container>
       </main>
+      <Footer />
     </>
   );
 };

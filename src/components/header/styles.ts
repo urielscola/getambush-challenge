@@ -17,6 +17,6 @@ export const HeaderContent = styled.div`
 `;
 
 export const Navigation = styled.nav`
-  padding: 15px 0;
+  padding: 10px 0;
   background-color: ${({ theme }) => theme.colors.blue};
 `;

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Head,
   Header,
+  Footer,
   FlexDiv,
   Icon,
   Container,
@@ -34,13 +35,14 @@ const Favorites: React.FC = () => {
             ))}
 
             {list.length === 0 && (
-              <FlexDiv flexWrap="wrap" margin="40px 0">
+              <FlexDiv flexWrap="wrap" margin="40px 0" minHeight="50vh">
                 <Typography size="medium">No favorites.</Typography>
               </FlexDiv>
             )}
           </FlexDiv>
         </Container>
       </main>
+      <Footer />
     </>
   );
 };
