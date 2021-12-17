@@ -1,15 +1,23 @@
 import http from './http';
+import { SearchIssuesParams, SearchIssuesResponse } from './interfaces';
 
-export const searchIssues = async (): Promise<any> => {
-  const response = await http.get('/search/issues', {
-    params: {
-      state: 'open',
-      q: 'React vs stencil',
-      // sort: 'created',
-      // order: 'asc',
-      per_page: 5,
-    },
-  });
+export const searchIssues = async ({
+  search,
+  state,
+  order,
+  page,
+}: SearchIssuesParams): Promise<SearchIssuesResponse> => {
+  const response: SearchIssuesResponse = await http.get(
+    `/search/issues?q=${search}+is:issue${state ? `+is:${state}` : ''}`,
+    {
+      params: {
+        order,
+        page,
+        per_page: 5,
+        sort: 'created',
+      },
+    }
+  );
 
   return response;
 };

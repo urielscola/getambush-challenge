@@ -21,11 +21,13 @@ type Props = CustomProps &
   ColorProps &
   LayoutProps;
 
-const Typography: React.FC<Props> = ({ as = 'p', children, ...props }) => (
-  <Styles.Component as={as} {...props} data-testid="text">
-    {children}
-  </Styles.Component>
-);
+const Typography: React.FC<Props> = ({ as = 'p', children, ...props }) => {
+  return (
+    <Styles.Component as={as} {...props} data-testid="text">
+      {children}
+    </Styles.Component>
+  );
+};
 
 export default Typography;
 

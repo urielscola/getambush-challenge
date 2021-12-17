@@ -4,10 +4,8 @@ import { medias } from 'assets/styles';
 
 export const Container = styled('div')`
   position: relative;
-  margin-bottom: 35px;
 
   ${medias.greaterThan('lg')`
-    margin-bottom: 45px;
     max-width: 465px;
   `};
 

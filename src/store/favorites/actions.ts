@@ -1,5 +1,5 @@
 import { FavoritesTypes } from './types';
-import { Issue } from './interfaces';
+import { Issue } from 'utils';
 import { Action } from '../interfaces';
 
 export class FavoritesActions {

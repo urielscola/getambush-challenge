@@ -22,9 +22,6 @@ const colors: Colors = {
   offWhite: '#a1a5ab',
   offWhiteDark: '',
   offWhiteLight: '',
-  blue: '#788cfe',
-  blueDark: '',
-  blueLight: '',
   bg1: '#33373c',
   bg1Dark: '',
   bg1Light: '',
@@ -43,6 +40,14 @@ const colors: Colors = {
   error: '#e35b5c',
   errorDark: '',
   errorLight: '',
+  blue: '#788cfe',
+  purple: '#b278fd',
+  pink: '#ff78a5',
+  salmon: '#ff7978',
+  gold: '#feb678',
+  yellow: '#ffe879',
+  lemon: '#a0fe78',
+  cyan: '#78ffdf',
 };
 
 Object.keys(colors).forEach((key) => {

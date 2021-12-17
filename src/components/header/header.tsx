@@ -14,7 +14,7 @@ const Header: React.FC = ({ children }) => {
             color={theme.colors.white}
             marginRight={10}
           >
-            <b>GitHub</b> Search
+            GitHub Search
           </Typography>
           <Icon variant="github" color={theme.colors.blue} />
         </FlexDiv>

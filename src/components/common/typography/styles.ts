@@ -37,13 +37,13 @@ const font = {
   prop: 'font',
   variants: {
     light: {
-      fontFamily: theme.typography.weightLight,
+      fontWeight: theme.typography.weightLight,
     },
     medium: {
-      fontFamily: theme.typography.weightNormal,
+      fontWeight: theme.typography.weightNormal,
     },
     bold: {
-      fontFamily: theme.typography.weightBold,
+      fontWeight: theme.typography.weightBold,
     },
   },
 };
@@ -67,7 +67,7 @@ interface Props {
 export const Component = styled('p')<Props>`
   letter-spacing: 0.4px;
   line-height: 30px;
-  ${compose(variant(size), variant(font), variant(appearence))};
+  ${compose(variant(font), variant(appearence), variant(size))};
   ${space};
   ${color};
   ${typography};

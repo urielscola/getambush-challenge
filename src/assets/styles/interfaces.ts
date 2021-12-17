@@ -8,9 +8,6 @@ export interface Colors {
   offWhite: string;
   offWhiteDark: string;
   offWhiteLight: string;
-  blue: string;
-  blueDark: string;
-  blueLight: string;
   bg1: string;
   bg1Dark: string;
   bg1Light: string;
@@ -29,6 +26,14 @@ export interface Colors {
   error: string;
   errorDark: string;
   errorLight: string;
+  blue: string;
+  purple: string;
+  pink: string;
+  salmon: string;
+  gold: string;
+  yellow: string;
+  lemon: string;
+  cyan: string;
   [key: string]: string;
 }
 
