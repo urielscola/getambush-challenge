@@ -34,6 +34,8 @@
 ## Development environment installation
 
 Clone this repository and run `yarn` or `npm install` to install the project dependencies.
+<br/>
+You can also run the project with Docker: please run `docker-compose up` in the project root folder.
 
 <br/>
 
