@@ -8,6 +8,7 @@ import {
   Container,
   Typography,
   IssueCard,
+  Loader,
   Button,
 } from 'components';
 import {
@@ -17,6 +18,7 @@ import {
   IssueOrder,
   SearchIssuesParams,
 } from 'services';
+import { theme } from 'assets/styles';
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -79,8 +81,6 @@ const Home: React.FC = () => {
     handleSearch({ search, page, state, order });
   }, []);
 
-  console.log({ loading });
-
   return (
     <>
       <Head />
@@ -110,6 +110,9 @@ const Home: React.FC = () => {
               <Icon
                 variant={state === 'closed' ? 'lock-closed' : 'lock-open'}
                 onClick={handleStateClick}
+                color={
+                  state === 'closed' ? theme.colors.error : theme.colors.success
+                }
                 margin="5px"
               />
 
@@ -121,23 +124,34 @@ const Home: React.FC = () => {
             </FlexDiv>
           </FlexDiv>
 
+          {!loading && issues && issues.items.length === 0 && (
+            <FlexDiv flexWrap="wrap" margin="40px 0">
+              <Typography size="medium">No results</Typography>
+            </FlexDiv>
+          )}
+
           {issues && (
-            <>
-              <FlexDiv flexWrap="wrap" margin="40px 0">
-                {issues.items.map((issue, index) => (
-                  <IssueCard issue={issue} key={issue.id} index={index} />
-                ))}
-              </FlexDiv>
-              {issues.items.length < issues?.total_count && (
-                <FlexDiv justifyContent="center" margin="30px 0">
-                  <Button
-                    onClick={handleLoadMore}
-                    text="Next page"
-                    disabled={loading}
-                  />
-                </FlexDiv>
-              )}
-            </>
+            <FlexDiv flexWrap="wrap" margin="40px 0">
+              {issues.items.map((issue, index) => (
+                <IssueCard issue={issue} key={issue.id} index={index} />
+              ))}
+            </FlexDiv>
+          )}
+
+          {loading && (
+            <FlexDiv margin="30px" alignItems="center" justifyContent="center">
+              <Loader size="x-large" />
+            </FlexDiv>
+          )}
+
+          {issues && issues.items.length < issues?.total_count && (
+            <FlexDiv justifyContent="center" margin="30px 0">
+              <Button
+                onClick={handleLoadMore}
+                text="Next page"
+                disabled={loading}
+              />
+            </FlexDiv>
           )}
         </Container>
       </main>

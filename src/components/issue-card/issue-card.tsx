@@ -32,7 +32,7 @@ const IssueCard = ({ issue, index }: Props) => {
     <Styles.Container>
       <FlexDiv
         backgroundColor={getColorVariation(theme, index + 1)}
-        padding="25px"
+        padding="40px 25px"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
@@ -63,7 +63,7 @@ const IssueCard = ({ issue, index }: Props) => {
           marginBottom="5px"
         >
           <a href={issue.html_url} target="_blank" title={issue.title}>
-            {issue.title}
+            {truncateString(issue.title, 45)}
           </a>
         </Typography>
 

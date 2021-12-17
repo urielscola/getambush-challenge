@@ -32,6 +32,12 @@ const Favorites: React.FC = () => {
             {list.map((issue, index) => (
               <IssueCard issue={issue} key={issue.id} index={index} />
             ))}
+
+            {list.length === 0 && (
+              <FlexDiv flexWrap="wrap" margin="40px 0">
+                <Typography size="medium">No favorites.</Typography>
+              </FlexDiv>
+            )}
           </FlexDiv>
         </Container>
       </main>
