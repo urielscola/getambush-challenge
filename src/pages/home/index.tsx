@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import {
   Head,
   Header,
@@ -9,6 +8,7 @@ import {
   Container,
   Typography,
   IssueCard,
+  Button,
 } from 'components';
 import {
   searchIssues,
@@ -19,19 +19,23 @@ import {
 } from 'services';
 
 const Home: React.FC = () => {
+  const [loading, setLoading] = useState(true);
   const [issues, setIssues] = useState<SearchIssuesResponse | null>(null);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('React');
-  const [state, setState] = useState<IssueState | undefined>('open');
-  const [order, setOrder] = useState<IssueOrder | undefined>('desc');
+  const [state, setState] = useState<IssueState>('open');
+  const [order, setOrder] = useState<IssueOrder>('desc');
 
   const handleSearch = useCallback(async (params: SearchIssuesParams) => {
     try {
+      setLoading(true);
       const response = await searchIssues({ ...params });
       console.log(response);
       setIssues(response);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -75,9 +79,11 @@ const Home: React.FC = () => {
     handleSearch({ search, page, state, order });
   }, []);
 
+  console.log({ loading });
+
   return (
     <>
-      <Head title="Home" />
+      <Head />
       <Header>
         <FlexDiv marginTop="30px">
           <form onSubmit={onSubmit}>
@@ -123,7 +129,13 @@ const Home: React.FC = () => {
                 ))}
               </FlexDiv>
               {issues.items.length < issues?.total_count && (
-                <button onClick={handleLoadMore}>PROX</button>
+                <FlexDiv justifyContent="center" margin="30px 0">
+                  <Button
+                    onClick={handleLoadMore}
+                    text="Next page"
+                    disabled={loading}
+                  />
+                </FlexDiv>
               )}
             </>
           )}

@@ -5,3 +5,4 @@ export { default as Icon } from './icon';
 export { default as Input } from './input';
 export { default as Loader } from './loader';
 export { default as Typography } from './typography';
+export { default as Button } from './button';

@@ -13,7 +13,7 @@ export const searchIssues = async ({
       params: {
         order,
         page,
-        per_page: 5,
+        per_page: 20,
         sort: 'created',
       },
     }

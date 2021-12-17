@@ -3,7 +3,7 @@ import { Issue, truncateString, getColorVariation } from 'utils';
 import { FlexDiv, Icon, Typography } from 'components';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from 'hooks';
-import { FavoritesActions } from 'store/favorites';
+import { FavoritesActions, FavoritesState } from 'store/favorites';
 import { theme } from 'assets/styles';
 import * as Styles from './styles';
 
@@ -13,8 +13,11 @@ interface Props {
 }
 
 const IssueCard = ({ issue, index }: Props) => {
-  const { lookup } = useTypedSelector((state) => state.favorites);
   const dispatch = useDispatch();
+
+  const { lookup }: FavoritesState = useTypedSelector(
+    (state) => state.favorites
+  );
   const repository = issue.repository_url.split('/');
 
   const handleFavoriteClick = () => {
