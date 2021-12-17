@@ -3,6 +3,7 @@
 ## Architecture and most important libraries used
 
 - React
+- Redux
 - React Router Dom
 - Typescript
 - Jest
