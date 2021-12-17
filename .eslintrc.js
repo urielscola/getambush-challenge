@@ -27,11 +27,12 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/self-closing-comp": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/default-param-last": "off"
+    'react/prop-types': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/self-closing-comp': 'warn',
+    'jest/no-mocks-import': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/default-param-last': 'off',
   },
 };

@@ -13,6 +13,7 @@ interface CustomProps {
   color?: string;
   width?: number;
   height?: number;
+  [key: string]: any;
 }
 
 type VariantProps = Omit<CustomProps, 'variant'>;

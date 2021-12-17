@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       const response = await searchIssues({ ...params });
       setIssues(response);
     } catch (err) {
-      console.log(err);
+      console.log('request error');
     } finally {
       setLoading(false);
     }
@@ -126,6 +126,7 @@ const Home: React.FC = () => {
             )}
             <FlexDiv alignItems="center">
               <Icon
+                id="sort-state"
                 variant={state === 'closed' ? 'lock-closed' : 'lock-open'}
                 onClick={handleStateClick}
                 color={
@@ -135,6 +136,7 @@ const Home: React.FC = () => {
               />
 
               <Icon
+                id="sort-order"
                 variant={order === 'asc' ? 'sort-up' : 'sort-down'}
                 onClick={handleOrderClick}
                 margin="5px"
@@ -173,6 +175,7 @@ const Home: React.FC = () => {
                 onClick={handleLoadMore}
                 text="Next page"
                 disabled={loading}
+                id="load-more"
               />
             </FlexDiv>
           )}

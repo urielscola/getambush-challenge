@@ -1,5 +1,7 @@
 import React from 'react';
-import { Issue, truncateString, getColorVariation } from 'utils';
+import { getColorVariation } from 'utils/getColorVariation';
+import { truncateString } from 'utils/truncateString';
+import { Issue } from 'utils/shared-interfaces';
 import { FlexDiv, Icon, Typography } from 'components';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from 'hooks';
@@ -36,6 +38,7 @@ const IssueCard = ({ issue, index }: Props) => {
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
+        id="card-top"
       >
         <Styles.Author>
           <img src={issue.user.avatar_url} />
